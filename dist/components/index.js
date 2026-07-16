@@ -29,7 +29,7 @@ function slugify(v2) {
 var KindModeContent_default = (() => {
   const KindModeContent = ({ fileData, allFiles }) => {
     const slug = fileData.slug ?? "";
-    const sourceNotes = allFiles.filter((f3) => f3.frontmatter?.type === "source");
+    const sourceNotes = allFiles.filter((f3) => Boolean(f3.frontmatter?.type));
     let matches = [];
     let heading = "";
     if (slug.startsWith("kind/")) {

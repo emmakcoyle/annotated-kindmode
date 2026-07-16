@@ -14,7 +14,7 @@ export const KindModePage: QuartzPageTypePlugin<{}> = () => ({
   match: matcher,
   generate({ content }) {
     const allFiles = content.map((c) => c[1].data)
-    const sourceNotes = allFiles.filter((f: any) => f.frontmatter?.type === "source")
+    const sourceNotes = allFiles.filter((f: any) => Boolean(f.frontmatter?.type))
 
     const kinds = new Set<string>()
     const modes = new Set<string>()

@@ -29,7 +29,7 @@ function slugify(v2) {
 var KindModeContent_default = (() => {
   const KindModeContent = ({ fileData, allFiles }) => {
     const slug = fileData.slug ?? "";
-    const sourceNotes = allFiles.filter((f3) => f3.frontmatter?.type === "source");
+    const sourceNotes = allFiles.filter((f3) => Boolean(f3.frontmatter?.type));
     let matches = [];
     let heading = "";
     if (slug.startsWith("kind/")) {
@@ -79,7 +79,7 @@ var KindModePage = () => ({
   match: matcher,
   generate({ content }) {
     const allFiles = content.map((c2) => c2[1].data);
-    const sourceNotes = allFiles.filter((f3) => f3.frontmatter?.type === "source");
+    const sourceNotes = allFiles.filter((f3) => Boolean(f3.frontmatter?.type));
     const kinds = /* @__PURE__ */ new Set();
     const modes = /* @__PURE__ */ new Set();
     const combos = /* @__PURE__ */ new Set();

@@ -7,7 +7,7 @@ function slugify(v: string): string {
 export default (() => {
   const KindModeContent: QuartzComponent = ({ fileData, allFiles }: QuartzComponentProps) => {
     const slug = fileData.slug ?? ""
-    const sourceNotes = allFiles.filter((f) => f.frontmatter?.type === "source")
+    const sourceNotes = allFiles.filter((f) => Boolean(f.frontmatter?.type))
 
     let matches: typeof sourceNotes = []
     let heading = ""
