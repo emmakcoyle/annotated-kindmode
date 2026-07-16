@@ -26,6 +26,10 @@ function u2(e2, t2, n2, o2, i2, u3) {
 function slugify(v2) {
   return v2.toLowerCase().trim().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
 }
+function firstLetter(title) {
+  const c2 = title.trim().charAt(0).toUpperCase();
+  return /[A-Z0-9]/.test(c2) ? c2 : "#";
+}
 var KindModeContent_default = (() => {
   const KindModeContent = ({ fileData, allFiles }) => {
     const slug = fileData.slug ?? "";
@@ -47,6 +51,16 @@ var KindModeContent_default = (() => {
       );
       heading = `${String(matches[0]?.frontmatter?.kind ?? kindSlug)} \xB7 ${String(matches[0]?.frontmatter?.mode ?? modeSlug)}`;
     }
+    const sorted = [...matches].sort(
+      (a2, b) => String(a2.frontmatter?.title ?? "").localeCompare(String(b.frontmatter?.title ?? ""))
+    );
+    const groups = [];
+    sorted.forEach((e2) => {
+      const letter = firstLetter(String(e2.frontmatter?.title ?? ""));
+      const last = groups[groups.length - 1];
+      if (last && last.letter === letter) last.entries.push(e2);
+      else groups.push({ letter, entries: [e2] });
+    });
     return /* @__PURE__ */ u2("div", { class: "markdown-preview-view markdown-rendered", children: /* @__PURE__ */ u2("div", { class: "wrap", children: [
       /* @__PURE__ */ u2("h1", { class: "note-title", style: "text-align:center; font-size:32px; font-family:'MyHand','Fraunces',serif; font-weight:normal; margin:0 0 1.4rem;", children: heading }),
       /* @__PURE__ */ u2("p", { style: "text-align:center; color:var(--ink-soft); max-width:500px; margin:0 auto 2.4rem;", children: [
@@ -54,15 +68,22 @@ var KindModeContent_default = (() => {
         " ",
         matches.length === 1 ? "note" : "notes"
       ] }),
-      /* @__PURE__ */ u2("div", { class: "entry-list-block", children: matches.map((e2, i2) => /* @__PURE__ */ u2("div", { class: "entry", children: [
-        /* @__PURE__ */ u2("span", { class: "num", children: String(e2.frontmatter?.coordinate ?? "") }),
-        /* @__PURE__ */ u2("div", { children: [
-          /* @__PURE__ */ u2("p", { class: "title", children: /* @__PURE__ */ u2("a", { href: `./${e2.slug}`, style: "color:inherit;text-decoration:none;", children: String(e2.frontmatter?.title ?? "") }) }),
-          /* @__PURE__ */ u2("p", { class: "dek", children: String(e2.frontmatter?.description ?? "") }),
-          /* @__PURE__ */ u2("span", { class: "mode", children: String(e2.frontmatter?.mode ?? "") })
-        ] }),
-        /* @__PURE__ */ u2("span", { class: "kind", children: String(e2.frontmatter?.kind ?? "") })
-      ] }, i2)) })
+      groups.length > 1 && /* @__PURE__ */ u2("nav", { class: "toc", style: "max-width:300px; margin:0 auto 2.4rem;", children: [
+        /* @__PURE__ */ u2("div", { class: "toc-header", children: /* @__PURE__ */ u2("h3", { children: "Jump to" }) }),
+        /* @__PURE__ */ u2("ul", { class: "toc-content", style: "display:flex;flex-wrap:wrap;gap:0.6rem;list-style:none;padding:0;margin:0.6rem 0 0;", children: groups.map((g2, i2) => /* @__PURE__ */ u2("li", { children: /* @__PURE__ */ u2("a", { href: `#letter-${g2.letter}`, children: g2.letter }) }, i2)) })
+      ] }),
+      groups.map((g2, gi) => /* @__PURE__ */ u2("div", { children: [
+        groups.length > 1 && /* @__PURE__ */ u2("h2", { id: `letter-${g2.letter}`, style: "font-family:'Fraunces',serif; font-weight:500; font-size:16px; color:var(--rubric); margin:2rem 0 0.6rem;", children: g2.letter }),
+        /* @__PURE__ */ u2("div", { class: "entry-list-block", children: g2.entries.map((e2, i2) => /* @__PURE__ */ u2("div", { class: "entry", children: [
+          /* @__PURE__ */ u2("span", { class: "num", children: String(e2.frontmatter?.coordinate ?? "") }),
+          /* @__PURE__ */ u2("div", { children: [
+            /* @__PURE__ */ u2("p", { class: "title", children: /* @__PURE__ */ u2("a", { href: `../${e2.slug}`, style: "color:inherit;text-decoration:none;", children: String(e2.frontmatter?.title ?? "") }) }),
+            /* @__PURE__ */ u2("p", { class: "dek", children: String(e2.frontmatter?.description ?? "") }),
+            /* @__PURE__ */ u2("span", { class: "mode", children: String(e2.frontmatter?.mode ?? "") })
+          ] }),
+          /* @__PURE__ */ u2("span", { class: "kind", children: String(e2.frontmatter?.kind ?? "") })
+        ] }, i2)) })
+      ] }, gi))
     ] }) });
   };
   return KindModeContent;

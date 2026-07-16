@@ -4,6 +4,11 @@ function slugify(v: string): string {
   return v.toLowerCase().trim().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "")
 }
 
+function firstLetter(title: string): string {
+  const c = title.trim().charAt(0).toUpperCase()
+  return /[A-Z0-9]/.test(c) ? c : "#"
+}
+
 export default (() => {
   const KindModeContent: QuartzComponent = ({ fileData, allFiles }: QuartzComponentProps) => {
     const slug = fileData.slug ?? ""
@@ -30,6 +35,17 @@ export default (() => {
       heading = `${String(matches[0]?.frontmatter?.kind ?? kindSlug)} · ${String(matches[0]?.frontmatter?.mode ?? modeSlug)}`
     }
 
+    const sorted = [...matches].sort((a, b) =>
+      String(a.frontmatter?.title ?? "").localeCompare(String(b.frontmatter?.title ?? "")),
+    )
+    const groups: { letter: string; entries: typeof sorted }[] = []
+    sorted.forEach((e) => {
+      const letter = firstLetter(String(e.frontmatter?.title ?? ""))
+      const last = groups[groups.length - 1]
+      if (last && last.letter === letter) last.entries.push(e)
+      else groups.push({ letter, entries: [e] })
+    })
+
     return (
       <div class="markdown-preview-view markdown-rendered">
         <div class="wrap">
@@ -37,19 +53,38 @@ export default (() => {
           <p style="text-align:center; color:var(--ink-soft); max-width:500px; margin:0 auto 2.4rem;">
             {matches.length} {matches.length === 1 ? "note" : "notes"}
           </p>
-          <div class="entry-list-block">
-            {matches.map((e, i) => (
-              <div class="entry" key={i}>
-                <span class="num">{String(e.frontmatter?.coordinate ?? "")}</span>
-                <div>
-                  <p class="title"><a href={`./${e.slug}`} style="color:inherit;text-decoration:none;">{String(e.frontmatter?.title ?? "")}</a></p>
-                  <p class="dek">{String(e.frontmatter?.description ?? "")}</p>
-                  <span class="mode">{String(e.frontmatter?.mode ?? "")}</span>
-                </div>
-                <span class="kind">{String(e.frontmatter?.kind ?? "")}</span>
+
+          {groups.length > 1 && (
+            <nav class="toc" style="max-width:300px; margin:0 auto 2.4rem;">
+              <div class="toc-header"><h3>Jump to</h3></div>
+              <ul class="toc-content" style="display:flex;flex-wrap:wrap;gap:0.6rem;list-style:none;padding:0;margin:0.6rem 0 0;">
+                {groups.map((g, i) => (
+                  <li key={i}><a href={`#letter-${g.letter}`}>{g.letter}</a></li>
+                ))}
+              </ul>
+            </nav>
+          )}
+
+          {groups.map((g, gi) => (
+            <div key={gi}>
+              {groups.length > 1 && (
+                <h2 id={`letter-${g.letter}`} style="font-family:'Fraunces',serif; font-weight:500; font-size:16px; color:var(--rubric); margin:2rem 0 0.6rem;">{g.letter}</h2>
+              )}
+              <div class="entry-list-block">
+                {g.entries.map((e, i) => (
+                  <div class="entry" key={i}>
+                    <span class="num">{String(e.frontmatter?.coordinate ?? "")}</span>
+                    <div>
+                      <p class="title"><a href={`../${e.slug}`} style="color:inherit;text-decoration:none;">{String(e.frontmatter?.title ?? "")}</a></p>
+                      <p class="dek">{String(e.frontmatter?.description ?? "")}</p>
+                      <span class="mode">{String(e.frontmatter?.mode ?? "")}</span>
+                    </div>
+                    <span class="kind">{String(e.frontmatter?.kind ?? "")}</span>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
       </div>
     )
