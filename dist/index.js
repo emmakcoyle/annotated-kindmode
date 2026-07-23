@@ -88,7 +88,7 @@ var KindModeContent_default = (() => {
         {
           class: "note-title",
           "data-edge-multi": "3",
-          style: "display:inline-block; position:relative; cursor:default; font-size:32px; font-family:'MyHand','Fraunces',serif; font-weight:normal; margin:0; padding-bottom:0.2em;",
+          style: "display:inline-block; position:relative; font-size:32px; font-family:'MyHand','Fraunces',serif; font-weight:normal; margin:0; padding-bottom:0.2em;",
           children: [
             heading,
             /* @__PURE__ */ u2("span", { class: "title-underline" })
