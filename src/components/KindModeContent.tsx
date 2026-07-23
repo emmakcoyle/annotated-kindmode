@@ -118,3 +118,4 @@ export default (() => {
     )
   }
   return KindModeContent
+}) satisfies QuartzComponentConstructor
