@@ -62,22 +62,6 @@ var KindModeContent_default = (() => {
       else groups.push({ letter, entries: [e2] });
     });
     return /* @__PURE__ */ u2("div", { class: "markdown-preview-view markdown-rendered", children: /* @__PURE__ */ u2("div", { class: "wrap", children: [
-      /* @__PURE__ */ u2("details", { class: "fold-nav-wrap", children: [
-        /* @__PURE__ */ u2("summary", { class: "fold-nav-button", "aria-label": "Menu", children: /* @__PURE__ */ u2("svg", { width: "16", height: "16", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", "stroke-width": "2", "stroke-linecap": "round", children: [
-          /* @__PURE__ */ u2("line", { x1: "4", y1: "7", x2: "20", y2: "7" }),
-          /* @__PURE__ */ u2("line", { x1: "4", y1: "12", x2: "20", y2: "12" }),
-          /* @__PURE__ */ u2("line", { x1: "4", y1: "17", x2: "20", y2: "17" })
-        ] }) }),
-        /* @__PURE__ */ u2("nav", { class: "fold-nav-panel", children: [
-          /* @__PURE__ */ u2("a", { href: "../", children: "Home" }),
-          /* @__PURE__ */ u2("a", { href: "../sources", children: "Sources" }),
-          /* @__PURE__ */ u2("a", { href: "../ideas", children: "Ideas" }),
-          /* @__PURE__ */ u2("a", { href: "../publications", children: "Publications" }),
-          /* @__PURE__ */ u2("a", { href: "../bibliography", children: "Bibliography" }),
-          /* @__PURE__ */ u2("a", { href: "../map", children: "Map" }),
-          /* @__PURE__ */ u2("a", { href: "../about", children: "About" })
-        ] })
-      ] }),
       /* @__PURE__ */ u2("div", { class: "page-header-mini", children: /* @__PURE__ */ u2("div", { class: "masthead-group-mini", children: [
         /* @__PURE__ */ u2("p", { class: "eyebrow", children: /* @__PURE__ */ u2("span", { class: "eyebrow-text", children: "an interdisciplinary research archive" }) }),
         /* @__PURE__ */ u2("a", { href: "../", class: "masthead-mini", style: "font-family:'MyHand','Fraunces',serif; font-weight:normal;", children: "Annotated" }),
