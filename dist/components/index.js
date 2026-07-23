@@ -85,8 +85,18 @@ var KindModeContent_default = (() => {
         ] }),
         /* @__PURE__ */ u2("img", { src: "../static/underline-thick-gold.png", class: "pencil-rule-mini", alt: "" })
       ] }),
-      /* @__PURE__ */ u2("h1", { class: "note-title", style: "text-align:center; font-size:32px; font-family:'MyHand','Fraunces',serif; font-weight:normal; margin:0 0 0.6rem;", children: heading }),
-      /* @__PURE__ */ u2("img", { src: "../static/underline-thin-sage.png", class: "mark-underline-thin", style: "margin: 0 auto 1.6rem;", alt: "" }),
+      /* @__PURE__ */ u2("div", { style: "text-align:center; margin: -0.4rem 0 1.6rem;", children: /* @__PURE__ */ u2(
+        "h1",
+        {
+          class: "note-title",
+          "data-edge-multi": "3",
+          style: "display:inline-block; position:relative; cursor:default; font-size:32px; font-family:'MyHand','Fraunces',serif; font-weight:normal; margin:0; padding-bottom:0.2em;",
+          children: [
+            heading,
+            /* @__PURE__ */ u2("span", { class: "title-underline" })
+          ]
+        }
+      ) }),
       /* @__PURE__ */ u2("p", { style: "text-align:center; color:var(--ink-soft); max-width:500px; margin:0 auto 2.4rem;", children: [
         matches.length,
         " ",

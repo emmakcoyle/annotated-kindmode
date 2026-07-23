@@ -76,8 +76,17 @@ export default (() => {
             <img src="../static/underline-thick-gold.png" class="pencil-rule-mini" alt="" />
           </div>
 
-          <h1 class="note-title" style="text-align:center; font-size:32px; font-family:'MyHand','Fraunces',serif; font-weight:normal; margin:0 0 0.6rem;">{heading}</h1>
-          <img src="../static/underline-thin-sage.png" class="mark-underline-thin" style="margin: 0 auto 1.6rem;" alt="" />
+          <div style="text-align:center; margin: -0.4rem 0 1.6rem;">
+            <h1
+              class="note-title"
+              data-edge-multi="3"
+              style="display:inline-block; position:relative; cursor:default; font-size:32px; font-family:'MyHand','Fraunces',serif; font-weight:normal; margin:0; padding-bottom:0.2em;"
+            >
+              {heading}
+              <span class="title-underline"></span>
+            </h1>
+          </div>
+
           <p style="text-align:center; color:var(--ink-soft); max-width:500px; margin:0 auto 2.4rem;">
             {matches.length} {matches.length === 1 ? "note" : "notes"}
           </p>
