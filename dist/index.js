@@ -125,19 +125,29 @@ var KindModePage = () => ({
   generate({ content }) {
     const allFiles = content.map((c2) => c2[1].data);
     const sourceNotes = allFiles.filter((f3) => Boolean(f3.frontmatter?.type));
-    const kinds = /* @__PURE__ */ new Set();
-    const modes = /* @__PURE__ */ new Set();
+    const kindMap = /* @__PURE__ */ new Map();
+    const modeMap = /* @__PURE__ */ new Map();
     const combos = /* @__PURE__ */ new Set();
     for (const f3 of sourceNotes) {
       const k2 = f3.frontmatter?.kind;
       const m2 = f3.frontmatter?.mode;
-      if (k2) kinds.add(String(k2));
-      if (m2) modes.add(String(m2));
-      if (k2 && m2) combos.add(`${slugify2(String(k2))}--${slugify2(String(m2))}`);
+      if (k2) {
+        const ks = slugify2(String(k2));
+        if (ks && !kindMap.has(ks)) kindMap.set(ks, String(k2));
+      }
+      if (m2) {
+        const ms = slugify2(String(m2));
+        if (ms && !modeMap.has(ms)) modeMap.set(ms, String(m2));
+      }
+      if (k2 && m2) {
+        const ks = slugify2(String(k2));
+        const ms = slugify2(String(m2));
+        if (ks && ms) combos.add(`${ks}--${ms}`);
+      }
     }
     const virtualPages = [];
-    for (const k2 of kinds) virtualPages.push({ slug: `kind/${slugify2(k2)}`, title: k2, data: {} });
-    for (const m2 of modes) virtualPages.push({ slug: `mode/${slugify2(m2)}`, title: m2, data: {} });
+    for (const [ks, label] of kindMap) virtualPages.push({ slug: `kind/${ks}`, title: label, data: {} });
+    for (const [ms, label] of modeMap) virtualPages.push({ slug: `mode/${ms}`, title: label, data: {} });
     for (const c2 of combos) virtualPages.push({ slug: `grid/${c2}`, title: c2, data: {} });
     return virtualPages;
   },

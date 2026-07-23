@@ -16,21 +16,32 @@ export const KindModePage: QuartzPageTypePlugin<{}> = () => ({
     const allFiles = content.map((c) => c[1].data)
     const sourceNotes = allFiles.filter((f: any) => Boolean(f.frontmatter?.type))
 
-    const kinds = new Set<string>()
-    const modes = new Set<string>()
+    const kindMap = new Map<string, string>()
+    const modeMap = new Map<string, string>()
     const combos = new Set<string>()
 
     for (const f of sourceNotes as any[]) {
       const k = f.frontmatter?.kind
       const m = f.frontmatter?.mode
-      if (k) kinds.add(String(k))
-      if (m) modes.add(String(m))
-      if (k && m) combos.add(`${slugify(String(k))}--${slugify(String(m))}`)
+
+      if (k) {
+        const ks = slugify(String(k))
+        if (ks && !kindMap.has(ks)) kindMap.set(ks, String(k))
+      }
+      if (m) {
+        const ms = slugify(String(m))
+        if (ms && !modeMap.has(ms)) modeMap.set(ms, String(m))
+      }
+      if (k && m) {
+        const ks = slugify(String(k))
+        const ms = slugify(String(m))
+        if (ks && ms) combos.add(`${ks}--${ms}`)
+      }
     }
 
     const virtualPages: VirtualPage[] = []
-    for (const k of kinds) virtualPages.push({ slug: `kind/${slugify(k)}` as FullSlug, title: k, data: {} })
-    for (const m of modes) virtualPages.push({ slug: `mode/${slugify(m)}` as FullSlug, title: m, data: {} })
+    for (const [ks, label] of kindMap) virtualPages.push({ slug: `kind/${ks}` as FullSlug, title: label, data: {} })
+    for (const [ms, label] of modeMap) virtualPages.push({ slug: `mode/${ms}` as FullSlug, title: label, data: {} })
     for (const c of combos) virtualPages.push({ slug: `grid/${c}` as FullSlug, title: c, data: {} })
     return virtualPages
   },
