@@ -76,7 +76,8 @@ export default (() => {
             <img src="../static/underline-thick-gold.png" class="pencil-rule-mini" alt="" />
           </div>
 
-          <h1 class="note-title" style="text-align:center; font-size:32px; font-family:'MyHand','Fraunces',serif; font-weight:normal; margin:0 0 1.4rem;">{heading}</h1>
+          <h1 class="note-title" style="text-align:center; font-size:32px; font-family:'MyHand','Fraunces',serif; font-weight:normal; margin:0 0 0.6rem;">{heading}</h1>
+          <img src="../static/underline-thin-sage.png" class="mark-underline-thin" style="margin: 0 auto 1.6rem;" alt="" />
           <p style="text-align:center; color:var(--ink-soft); max-width:500px; margin:0 auto 2.4rem;">
             {matches.length} {matches.length === 1 ? "note" : "notes"}
           </p>
@@ -95,7 +96,7 @@ export default (() => {
           {groups.map((g, gi) => (
             <div key={gi}>
               {groups.length > 1 && (
-                <h2 id={`letter-${g.letter}`} style="font-family:'Fraunces',serif; font-weight:500; font-size:16px; color:var(--rubric); margin:2rem 0 0.6rem;">{g.letter}</h2>
+                <h2 id={`letter-${g.letter}`} style="font-family:'MyHand','Fraunces',serif; font-weight:normal; font-size:24px; color:var(--rubric); margin:2rem 0 0.6rem;">{g.letter}</h2>
               )}
               <div class="entry-list-block">
                 {g.entries.map((e, i) => (
@@ -117,4 +118,3 @@ export default (() => {
     )
   }
   return KindModeContent
-}) satisfies QuartzComponentConstructor
