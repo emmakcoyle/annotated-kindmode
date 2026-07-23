@@ -76,7 +76,7 @@ export default (() => {
             <img src="../static/underline-thick-gold.png" class="pencil-rule-mini" alt="" />
           </div>
 
-          <div style="text-align:center; margin: -0.4rem 0 1.6rem;">
+          <div style="text-align:center; margin: -1.2rem 0 1.4rem;">
             <h1
               class="note-title"
               data-edge-multi="3"
@@ -92,7 +92,7 @@ export default (() => {
           </p>
 
           {groups.length > 1 && (
-            <nav class="toc" style="max-width:300px; margin:0 auto 2.4rem;">
+            <nav class="toc" style="max-width:300px; margin:0 0 2.4rem;">
               <div class="toc-header"><h3>Jump to</h3></div>
               <ul class="toc-content" style="display:flex;flex-wrap:wrap;gap:0.6rem;list-style:none;padding:0;margin:0.6rem 0 0;">
                 {groups.map((g, i) => (

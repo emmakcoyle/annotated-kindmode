@@ -85,7 +85,7 @@ var KindModeContent_default = (() => {
         ] }),
         /* @__PURE__ */ u2("img", { src: "../static/underline-thick-gold.png", class: "pencil-rule-mini", alt: "" })
       ] }),
-      /* @__PURE__ */ u2("div", { style: "text-align:center; margin: -0.4rem 0 1.6rem;", children: /* @__PURE__ */ u2(
+      /* @__PURE__ */ u2("div", { style: "text-align:center; margin: -1.2rem 0 1.4rem;", children: /* @__PURE__ */ u2(
         "h1",
         {
           class: "note-title",
@@ -102,7 +102,7 @@ var KindModeContent_default = (() => {
         " ",
         matches.length === 1 ? "note" : "notes"
       ] }),
-      groups.length > 1 && /* @__PURE__ */ u2("nav", { class: "toc", style: "max-width:300px; margin:0 auto 2.4rem;", children: [
+      groups.length > 1 && /* @__PURE__ */ u2("nav", { class: "toc", style: "max-width:300px; margin:0 0 2.4rem;", children: [
         /* @__PURE__ */ u2("div", { class: "toc-header", children: /* @__PURE__ */ u2("h3", { children: "Jump to" }) }),
         /* @__PURE__ */ u2("ul", { class: "toc-content", style: "display:flex;flex-wrap:wrap;gap:0.6rem;list-style:none;padding:0;margin:0.6rem 0 0;", children: groups.map((g2, i2) => /* @__PURE__ */ u2("li", { children: /* @__PURE__ */ u2("a", { href: `#letter-${g2.letter}`, children: g2.letter }) }, i2)) })
       ] }),
