@@ -78,14 +78,12 @@ var KindModeContent_default = (() => {
           /* @__PURE__ */ u2("a", { href: "../about", children: "About" })
         ] })
       ] }),
-      /* @__PURE__ */ u2("div", { class: "page-header-mini", children: [
-        /* @__PURE__ */ u2("div", { class: "masthead-group-mini", children: [
-          /* @__PURE__ */ u2("p", { class: "eyebrow", children: /* @__PURE__ */ u2("span", { class: "eyebrow-text", children: "an interdisciplinary research archive" }) }),
-          /* @__PURE__ */ u2("a", { href: "../", class: "masthead-mini", style: "font-family:'MyHand','Fraunces',serif; font-weight:normal;", children: "Annotated" })
-        ] }),
+      /* @__PURE__ */ u2("div", { class: "page-header-mini", children: /* @__PURE__ */ u2("div", { class: "masthead-group-mini", children: [
+        /* @__PURE__ */ u2("p", { class: "eyebrow", children: /* @__PURE__ */ u2("span", { class: "eyebrow-text", children: "an interdisciplinary research archive" }) }),
+        /* @__PURE__ */ u2("a", { href: "../", class: "masthead-mini", style: "font-family:'MyHand','Fraunces',serif; font-weight:normal;", children: "Annotated" }),
         /* @__PURE__ */ u2("img", { src: "../static/underline-thick-gold.png", class: "pencil-rule-mini", alt: "" })
-      ] }),
-      /* @__PURE__ */ u2("div", { style: "text-align:center; margin: -1.2rem 0 1.4rem;", children: /* @__PURE__ */ u2(
+      ] }) }),
+      /* @__PURE__ */ u2("div", { style: "text-align:center; margin: 0 0 1.4rem;", children: /* @__PURE__ */ u2(
         "h1",
         {
           class: "note-title",

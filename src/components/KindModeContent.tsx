@@ -72,11 +72,11 @@ export default (() => {
             <div class="masthead-group-mini">
               <p class="eyebrow"><span class="eyebrow-text">an interdisciplinary research archive</span></p>
               <a href="../" class="masthead-mini" style="font-family:'MyHand','Fraunces',serif; font-weight:normal;">Annotated</a>
+              <img src="../static/underline-thick-gold.png" class="pencil-rule-mini" alt="" />
             </div>
-            <img src="../static/underline-thick-gold.png" class="pencil-rule-mini" alt="" />
           </div>
 
-          <div style="text-align:center; margin: -1.2rem 0 1.4rem;">
+          <div style="text-align:center; margin: 0 0 1.4rem;">
             <h1
               class="note-title"
               data-edge-multi="3"
